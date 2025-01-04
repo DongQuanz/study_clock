@@ -1,1 +1,3 @@
-void login(char* name);
+void login(char*& name);
+
+bool load(char* name, int& exp);
