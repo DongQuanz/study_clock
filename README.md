@@ -35,15 +35,11 @@
 
 To use **Study_Clock**, follow these steps:
 
-1. Navigate to the `source_code` directory using the terminal or command prompt:
-   ```sh
-   cd source_code
-   ```
-2. Compile the program using the `g++` compiler:
+1. Compile the program using the `g++` compiler:
    ```sh
    g++ -o study_clock main.cpp instruction.cpp object.cpp progress.cpp
    ```
-3. Run the application:
+2. Run the application:
    ```sh
    ./study_clock
    ```
