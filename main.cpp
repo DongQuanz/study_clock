@@ -1,3 +1,23 @@
+/*
+ *  STUDY_CLOCK - Study Time Management Application
+ *  ------------------------------------------------
+ *  Author       : Ngô Nguyễn Đông Quân
+ *  Version      : 1.0.0
+ *  Created Date : 13/02/2025
+ *  Language     : C++
+ *  Description  : STUDY_CLOCK is an application that helps track study time,  
+ *                 supports scheduling study sessions, and reminds users  
+ *                 when it's time to study.
+ *  
+ *  Copyright    : (C) 2025 Ngô Nguyễn Đông Quân. All rights reserved.
+ *  
+ *  Notes        :
+ *    - Version 1.0.0: Initial project setup with basic time-tracking features.
+ *  
+ */
+
+
+
 #include <iostream>
 #include <string.h>
 #include "object.h"

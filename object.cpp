@@ -5,22 +5,27 @@ User::User(string name, int level, int experience)
 
 void User::addExperience(int minutes)
 {
-    int points = minutes; 
-    experience += points;
-    cout << "You studied for " << minutes << " minutes and gained " << points << " experience points.\n";
+    uint32_t level_up = minutes/100; 
+    uint8_t exp_up = minutes % 100;
+    cout << "You studied for " << minutes << " minutes and gained " << minutes << " experience points.\n";
+    
+    bool up = level_up;
+    level += level_up;
+    experience += exp_up;
     while (experience >= 100)
     {
         experience -= 100;
         level++;
-        cout << "Congratulations! You leveled up to level " << level << "!\n";
+        up = true;
     }
+    if(up) cout << "Congratulations! You leveled up to level " << level << "!\n";
 }
 
 void User::displayStatus() const
 {
     cout << "\n===== User " << name << " =====\n";
-    cout << "1. Level" << level << "\n";
-    cout << "2. Experience points: " << experience << "/100\n";
+    cout << "1. Level: " << level << "\n";
+    cout << "2. Experience points: " << (int)experience << "/100\n";
 }
 
 void User::saveToFile() const
@@ -29,7 +34,7 @@ void User::saveToFile() const
     ofstream file(filename, ios::binary);
     if(file.is_open())
     {
-        size_t nameLength = name.size();
+        uint16_t nameLength = name.size();
         file.write(reinterpret_cast<const char*>(&nameLength), sizeof(nameLength));
         file.write(name.c_str(), nameLength);
         file.write(reinterpret_cast<const char*>(&level), sizeof(level));
@@ -50,7 +55,7 @@ bool User::loadFromFile()
     
     if(file.is_open())
     {
-        size_t nameLength;
+        uint16_t nameLength;
         file.read(reinterpret_cast<char*>(&nameLength), sizeof(nameLength));
 
         name.resize(nameLength);

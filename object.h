@@ -17,9 +17,9 @@ using namespace std::chrono;
 class User
 {
 private:
-    string name;
-    int level;
-    int experience;
+    string name = 0;
+    uint32_t level = 1;
+    uint8_t experience = 0;
 
 public:
     User(string name = "Unknown", int level = 1, int experience = 0);
