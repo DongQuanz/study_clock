@@ -1,20 +1,42 @@
 #include <iostream>
-#include "input.h"
-#include "check.h"
+#include <string.h>
+#include "object.h"
 #include "instruction.h"
+#include "progress.h"
 
 using namespace std;
 
-int main(){
-    char* name;
-    login(name);
+int main()
+{
+    string userName;
+    User user;
+    Timer timer;
 
-    int exp;
-    if(!load(name, exp)){
-        cout << "According to the information I looked up, you are a new user, do you need instructions? (Y/N): ";
-        if(check_acp()){
-            print_help();
+    cout << "Enter your name: ";
+
+    while (true)
+    {
+        getline(cin, userName);
+        if (userName.empty())
+        {
+            cout << "Name cannot be empty. Please enter again: ";
+            continue;
         }
+        if (userName.find_first_of("/\\:*?\"<>|") != string::npos)
+        {
+            cout << "Invalid name. Please avoid special characters (/\\:*?\"<>|). Try again: ";
+            continue;
+        }
+        break;
     }
+
+    user = User(userName);
+    if (user.loadFromFile())
+    {
+        cout << "Data loaded successfully.\n";
+        user.displayStatus();
+    }
+
+    execute(user, timer);
     return 0;
 }
